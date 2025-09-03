@@ -94,19 +94,16 @@ function animate() {
     const agent = agents[i];
     if (mode === "boids") {
       agent.flock(agents);
-      frameCount++;
+
+    } else if (mode === "nbody") {
+      agent.gravitate(agents);
+    }
+    frameCount++;
 
         if (frameCount % 10 === 0) {
             // Linien nur alle 2 Frames neu zeichnen
             updateForceLines(); // Funktion aus dem oberen Code
         }
-
-
-
-    } else if (mode === "nbody") {
-      agent.gravitate(agents);
-    }
-
     agent.update();
     agent.edges(100);
     meshes[i].position.copy(agent.position);

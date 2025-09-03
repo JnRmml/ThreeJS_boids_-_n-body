@@ -79,21 +79,41 @@ separation.divideScalar(count)
   }
 
 gravitate(agents, G = 10) {
+  let separation = new THREE.Vector3();
+  let count = 0;
+
   for (let other of agents) {
     if (other === this) continue;
 
     const dir = other.position.clone().sub(this.position);
     const distSq = dir.lengthSq();
 
-    if (distSq < 1e-4) continue; // Singularität noch robuster vermeiden
+    if (distSq < 1e-4) continue;
 
-    // Newtonsche Gravitationskraft
+    // Gravitation
     const forceMag = (G * this.mass * other.mass) / distSq;
-
-    const force = dir.normalize().multiplyScalar(forceMag); // Normalisiere vorher
-force.multiplyScalar(forceMultipliers.gravity);
-
+    const force = dir.clone().normalize().multiplyScalar(forceMag * forceMultipliers.gravity);
     this.applyForce(force);
+
+    // Separation
+    const distance = Math.sqrt(distSq);
+    if (distance < 5 && distance > 0) { //wenn distance kleiner als minDistance ist 
+        const diff = this.position.clone().sub(other.position).divideScalar(distance); // normalize
+        diff.divideScalar(distance); // stärkerer Effekt bei kleinerem Abstand
+      separation.add(diff);
+      count++;
+    }
+  }
+
+  // Anwenden der Separation-Kraft, falls nötig
+  if (count > 0) {
+    separation.divideScalar(count)
+              .setLength(50)
+              .sub(this.velocity)
+              .clampLength(0, this.maxForce)
+              .multiplyScalar(forceMultipliers.separation*20);
+
+    this.applyForce(separation);
   }
 }
 
