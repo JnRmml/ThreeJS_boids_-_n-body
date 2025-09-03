@@ -1,4 +1,4 @@
-# 🌀 Boids & N-Body Simulation mit Three.js
+# Boids & N-Body Simulation mit Three.js
 
 Dieses Projekt visualisiert zwei Bewegungsmodelle in 2D mit **Three.js**:
 
@@ -16,7 +16,7 @@ Dieses Projekt visualisiert zwei Bewegungsmodelle in 2D mit **Three.js**:
 
 ---
 
-## 🎮 Steuerung
+## Steuerung
 
 | Taste     | Aktion                        |
 | --------- | ----------------------------- |
@@ -30,7 +30,7 @@ Dieses Projekt visualisiert zwei Bewegungsmodelle in 2D mit **Three.js**:
 Alternativ können die Parameter direkt über die GUI verändert werden.
 
 
-## 📂 Dateistruktur
+## Dateistruktur
 
 ```bash
 .
@@ -40,27 +40,26 @@ Alternativ können die Parameter direkt über die GUI verändert werden.
 ```
 
 
-## 🧠 Boids-Verhalten
+## Boids-Verhalten
 
 * **Alignment**: Ausrichtung an der durchschnittlichen Richtung der Nachbarn
 * **Cohesion**: Bewegung zum Massenzentrum der Nachbarn
 * **Separation**: Abstoßung bei zu geringem Abstand
 
 
-## 🌌 N-Body Gravitation
+## N-Body Gravitation
 
 * Jede "Masse" zieht alle anderen gemäß dem Gravitationsgesetz an
 * Zusätzlich gibt es eine **künstliche Separation**, die Kollisionen verhindert 
 
 ---
 
-## 📦 Installation & Ausführung
+## Installation & Ausführung
 
 Direkt die `index.html`  im Browser öffnen
 
    > Alles läuft lokal
    > Ansonsten: von https://threejs.org/ dei Dateien herunterladen und einbinden
-
 
 ## Ideen für Erweiterungen
 
